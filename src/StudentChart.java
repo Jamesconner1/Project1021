@@ -1,10 +1,8 @@
 
 public class StudentChart {
 	public StudentChart(int[][] results) {
-		draw(MarkCalculator.computeMarks(results)); // calling the draw method and passing through the returned result from the computeMarks method in the MarkCalculator class.
-		
-		
-
+		IMarkCalculator mc = new MarkCalculator();
+		draw(mc.computeMarks(results)); // calling the draw method and passing through the returned result from the computeMarks method in the MarkCalculator class.
 	}
 
 	public void draw(int[] moduleMarks) { // a method which draws this bars based off values in an array
