@@ -27,7 +27,7 @@ public class Summary {
 
 			if (moduleNames[i].equals("CSC1023")) {
 				System.out.println("No Exam Mark");
-				moduleMarks[i][1] = 0;
+				moduleMarks[i][1] = 50; // so we don't trigger the <35 rule
 			}
 			else {
 				System.out.print("Exam Mark: ");
@@ -36,17 +36,10 @@ public class Summary {
 			
 			System.out.println();
 			
-			if (moduleMarks[i][0] > 101 || moduleMarks[i][1] > 101 || moduleMarks[i][0] < -1 || moduleMarks[i][1] < -1){ //validation to check that the value inputed by the user is less than or equal to 100 or more than or equal to 0
+			if (moduleMarks[i][0] > 100 || moduleMarks[i][1] > 100 || moduleMarks[i][0] < 0 || moduleMarks[i][1] < 0){ //validation to check that the value inputed by the user is less than or equal to 100 or more than or equal to 0
 				System.out.println("The students mark can't be greater than 100 or less than 0");		
 				System.exit(0);
 			}
-			
-			//TODO: Have it so when the exam mark for "CSC1023" is asked for it automatically sets the exam mark to 100 and doesn't require the user to enter anything.
-//			if(i == 3){
-//				moduleMarks[i][0] = input.nextInt();
-//				moduleMarks[3][1] = 100;
-//				continue;
-//			}
 		}
 		
 		return moduleMarks; //returns the module marks to the summary where is is stored in an array

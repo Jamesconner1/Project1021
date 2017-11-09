@@ -9,12 +9,12 @@ public class MarkCalculatorTest {
         int[][] results = {
                 {10, 20}, // CSC1021
                 {20, 30}, // CSC1022
-                {30, 40}, // CSC1023 // coursework only
+                {40, 50}, // CSC1023 // coursework only
                 {40, 50}, // CSC1024
                 {50, 60}, // CSC1025
                 {60, 70}, // CSC1026
         };
-        int[] expectedMarks = {15, 26, 30, 45, 58, 67};
+        int[] expectedMarks = {15, 26, 40, 45, 58, 67};
         testComputeMarksReturnsExpected(results, expectedMarks);
 
         int[] moduleMarks = {15, 36, 30, 45, 58, 36};
@@ -23,14 +23,17 @@ public class MarkCalculatorTest {
 
         String[] moduleResults = {"Fail", "Fail", "Fail", "Pass", "Pass", "Compensatable Fail"};
         testComputeStageResultReturnsExpected(moduleResults, "Fail");
+
         moduleResults = new String[] {"Pass", "Pass", "Compensatable Fail", "Pass", "Pass", "Compensatable Fail"};
         testComputeStageResultReturnsExpected(moduleResults, "Pass By Compensation");
+
         moduleResults = new String[] {"Pass", "Pass", "Pass", "Pass", "Pass", "Pass"};
         testComputeStageResultReturnsExpected(moduleResults, "Pass");
 
         // end to end!
         testComputeResultReturnsExpected(results, "Fail");
 
+        // let's try for a pass this time...
         int[][] moreResults = {
                 {40, 50}, // CSC1021
                 {50, 60}, // CSC1022

@@ -35,20 +35,14 @@ public class MarkCalculator implements IMarkCalculator {
 	String[] computeModuleResults(int[] moduleMarks) {
 		boolean[] coreModule = new boolean[] { false, true, false, false, false, false }; // creating a boolean array to work out if a module is core or not
 		String[] moduleResults = new String[6]; // created an array which stores what mark the student got for each one of the 6 modules
-//		String stageResult = ""; // Initialising a string variable which will store the students overall grade
-//		int compFail = 0; // Initialising an integer which works as a count for the about of fails by compensation the student got
-//		int fail = 0; // Initialising an integer which works as a count for the about of fails the student got
 
 		for (int i = 0; i < 6; i++) { // a for loop to calculate the result of each module and store it in the 'moduleResult' array, if the student get a Compensatable Fail or fail then their respective counters will increase by 1
 			if (moduleMarks[i] >= 40) {
 				moduleResults[i] = "Pass";
 			} else if (moduleMarks[i] < 40 && moduleMarks[i] >= 35 && !coreModule[i]) {
 				moduleResults[i] = "Compensatable Fail";
-//				compFail++;
-				// } else if (moduleMarks[i] < 35 || coreModule[i] == false) {
 			} else {
 				moduleResults[i] = "Fail";
-//				fail++;
 			}
 		}
 
