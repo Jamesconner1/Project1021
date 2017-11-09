@@ -1,42 +1,46 @@
 
 public class StudentChart {
 	public StudentChart(int[][] results) {
-		draw(MarkCalculator.computeMarks(results));
+		draw(MarkCalculator.computeMarks(results)); // calling the draw method and passing through the returned result from the computeMarks method in the MarkCalculator class.
+		
+		
 
 	}
 
 	public void draw(int[] moduleMarks) { // a method which draws this bars based off values in an array
 		
-		Bar x = new Bar();
-		x.makeVisible();
-		x.changeSize(200, 5);
-		x.changeColour(Colour.BLACK);
-		x.moveVertical(200);	
+		boolean[] coreModule = new boolean[] { true, false, true, true, true, true }; // creating a boolean array to work out if a module is core or not
 		
-		Bar y = new Bar();
-		y.makeVisible();
-		y.changeSize(5, 200);
-		y.changeColour(Colour.BLACK);
+		Bar x = new Bar(); // creating an object called 'x' which will be the x axis on my graph
+		x.makeVisible(); // making the object visible
+		x.changeSize(200, 5); // making the object into the shape of a thin line
+		x.changeColour(Colour.BLACK); // making the line black
+		x.moveVertical(200); //aligning the line so it is in the correct place
 		
-		int xPosition = 5;
-		int xDistance = 23;
+		Bar y = new Bar(); // creating an object called 'y' which will be the y axis on my graph
+		y.makeVisible(); // making the object visible
+		y.changeSize(5, 200); // making the object into the shape of a thin line
+		y.changeColour(Colour.BLACK); // making the line black
+		
+		int xPosition = 5; // Stating x position for the bars
+		int xDistance = 23; // the distance the bars are moved to the right
 	
-		for (int i = 0; i < moduleMarks.length; i++){
+		for (int i = 0; i < moduleMarks.length; i++){ // creating a for loop for creating the bars
 			
-			Bar j = new Bar();
-			j.makeVisible();
-			j.moveHorizontal(xPosition);
-			xPosition += xDistance;
-			j.changeSize(20, moduleMarks[i]);
-			j.moveVertical(200 - moduleMarks[i]);
+			Bar j = new Bar(); // making an object j which will by the bars for each module
+			j.makeVisible(); // making the bars visible
+			j.moveHorizontal(xPosition); // sets the horizontal position of the bars to 'xPosition'
+			xPosition += xDistance; // each time a new bar is created it adds the xDistance to the previous position.
+			j.changeSize(20, moduleMarks[i]); //changing the size of the bars depending on the results
+			j.moveVertical(200 - moduleMarks[i]); // changes the height of the bars depending on the marks
 			
-			if (moduleMarks[i] > 70){
+			if (moduleMarks[i] > 70){ //changes the colour of the bars depending on the result which the student got
 				j.changeColour(Colour.MAGENTA);
 			}
 			else if(moduleMarks[i] >= 40){
 				j.changeColour(Colour.GREEN);
 			}
-			else if(moduleMarks[i] < 40 && moduleMarks[i] > 35){
+			else if(moduleMarks[i] < 40 && moduleMarks[i] > 35 && coreModule[i] == true){
 				j.changeColour(Colour.YELLOW);
 			}
 			else{
@@ -47,14 +51,21 @@ public class StudentChart {
 		
 	}
 	
-	public void printSummary(int[] moduleMarks) { // prints a table of returned marks corresponding to the chart
-		String[] moduleNames = {"CSC1021", "CSC1022", "CSC1023", "CSC1024", "CSC1025", "CSC1026"};
-		System.out.println("     " + "Module" + "     " + "Mark"+ "     ");
-		System.out.println("--------------------------------------------");
+	public void printSummary(int[] moduleMarks, String stageResult) {// prints a table of returned marks corresponding to the chart and the overall stage result achieved by the student
 		
-		for (int i = 0; i < moduleMarks.length; i++){
-			System.out.println(moduleMarks[i]);
+		
+		String[] moduleNames = {"CSC1021", "CSC1022", "CSC1023", "CSC1024", "CSC1025", "CSC1026"}; //creating an array that stores the the names of the modules being studied
+		System.out.println("     " + "Module" + "  -  " + "Mark");
+		System.out.println("--------------------------");
+		
+		for (int i = 0; i < moduleMarks.length; i++){ // for loop which display the module followed by the module mark
+			System.out.println("     " + moduleNames[i] + "     " + moduleMarks[i]);			
 		}
+		
+		System.out.println("--------------------------");
+		System.out.println("The Student Has obtain an overall grade of: " + stageResult); // displays the overall grade obtained by the student
 	}
+
+	
 
 }
